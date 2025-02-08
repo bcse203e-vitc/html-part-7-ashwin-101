@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FizzBuzz</title>
+  <script>
+    function fizzBuzz() {
+      for (let i = 1; i <= 50; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+          document.write("FizzBuzz ");
+        } else if (i % 3 === 0) {
+          document.write("Fizz ");
+        } else if (i % 5 === 0) {
+          document.write("Buzz ");
+        } else {
+          document.write(i+" ");
+        }
+      }
+    }
+    window.onload = fizzBuzz;
+  </script>
+</head>
+<body>
+  <h1>FizzBuzz</h1>
+</body>
+</html>
