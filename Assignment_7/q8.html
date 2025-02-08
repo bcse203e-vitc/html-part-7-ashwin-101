@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Sort Function</title>
+  <script>
+    function bubbleSort(arr, order = 'asc') {
+      let n = arr.length;
+      for (let i = 0; i < n - 1; i++) {
+        for (let j = 0; j < n - 1 - i; j++) {
+          if ((order === 'asc' && arr[j] > arr[j + 1]) || (order === 'desc' && arr[j] < arr[j + 1])) {
+            // Swap elements
+            let temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+          }
+        }
+      }
+      return arr;
+    }
+
+    function handleArrayInput() {
+      let input = document.getElementById("arrayInput").value;
+      let array = input.split(',').map(Number);
+      let order = document.querySelector('input[name="order"]:checked').value;
+      let sortedArray = bubbleSort(array, order);
+      document.getElementById("result").innerText = "Sorted array (" + order + "): " + sortedArray.join(', ');
+    }
+  </script>
+</head>
+<body>
+  <h1>Custom Sort Function</h1>
+  <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas">
+  <br>
+  <label><input type="radio" name="order" value="asc" checked> Ascending</label>
+  <label><input type="radio" name="order" value="desc"> Descending</label>
+  <br>
+  <button onclick="handleArrayInput()">Sort</button>
+  <p id="result">Sorted array: </p>
+</body>
+</html>
