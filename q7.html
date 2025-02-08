@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Second and Third Largest Numbers</title>
+  <script>
+    function findSecondAndThirdLargest(arr) {
+      if (arr.length < 2) {
+        return "Array should have at least two elements";
+      }
+      let first = -Infinity, second = -Infinity, third = -Infinity;
+
+      arr.forEach(num => {
+        if (num > first) {
+          third = second;
+          second = first;
+          first = num;
+        } else if (num > second && num < first) {
+          third = second;
+          second = num;
+        } else if (num > third && num < second) {
+          third = num;
+        }
+      });
+
+      let result = "Second largest number: " + second;
+      if (arr.length >= 3) {
+        result += "<br>Third largest number: " + third;
+      } else {
+        result += "<br>Array should have at least three elements to find the third largest number";
+      }
+      return result;
+    }
+
+    function handleArrayInput() {
+      let input = document.getElementById("arrayInput").value;
+      let array = input.split(',').map(Number);
+      let result = findSecondAndThirdLargest(array);
+      document.getElementById("result").innerHTML = result;
+    }
+  </script>
+</head>
+<body>
+  <h1>Find Second and Third Largest Numbers</h1>
+  <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas">
+  <button onclick="handleArrayInput()">Find</button>
+  <p id="result"></p>
+</body>
+</html>
