@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess the Number</title>
+  <script>
+    let targetNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 5;
+
+    function guessNumber() {
+      let userGuess = parseInt(document.getElementById("guess").value);
+      attempts--;
+
+      if (userGuess === targetNumber) {
+        alert("Congratulations! You guessed the correct number.");
+        resetGame();
+      } else if (attempts > 0) {
+        if (userGuess > targetNumber) {
+          alert("Too high! Attempts left: " + attempts);
+        } else {
+          alert("Too low! Attempts left: " + attempts);
+        }
+      } else {
+        alert("Sorry, you've run out of attempts. The correct number was " + targetNumber + ".");
+        resetGame();
+      }
+    }
+
+    function resetGame() {
+      targetNumber = Math.floor(Math.random() * 100) + 1;
+      attempts = 5;
+      document.getElementById("guess").value = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>Guess the Number</h1>
+  <p>Enter a number between 1 and 100:</p>
+  <input type="number" id="guess" min="1" max="100">
+  <button onclick="guessNumber()">Submit</button>
+</body>
+</html>
 
