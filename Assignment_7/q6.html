@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Duplicate Finder</title>
+  <script>
+    function findAndPrintDuplicates(arr) {
+      const duplicates = arr.filter((item, index) => arr.indexOf(item) !== index);
+      console.log("Duplicate values:", duplicates);
+
+      const uniqueArray = [...new Set(arr)];
+      document.getElementById("duplicateResult").innerText = "Duplicate values: " + duplicates.join(', ');
+      document.getElementById("uniqueResult").innerText = "Unique array: " + uniqueArray.join(', ');
+    }
+
+    function handleArrayInput() {
+      let input = document.getElementById("arrayInput").value;
+      let array = input.split(',').map(Number);
+      findAndPrintDuplicates(array);
+    }
+  </script>
+</head>
+<body>
+  <h1>Duplicate Finder</h1>
+  <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas">
+  <button onclick="handleArrayInput()">Find and Remove Duplicates</button>
+  <p id="duplicateResult">Duplicate values: </p>
+  <p id="uniqueResult">Unique array: </p>
+</body>
+</html>
