@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Analyzer</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+  <script>
+    function analyzeText() {
+      let text = document.getElementById("inputText").value;
+      let charCount = text.length;
+      let words = text.match(/\b\w+\b/g);
+      let wordCount = words ? words.length : 0;
+      let wordMap = {};
+
+      words && words.forEach(word => {
+        word = word.toLowerCase();
+        wordMap[word] = (wordMap[word] || 0) + 1;
+      });
+
+      let highlightedText = text.replace(/\b\w+\b/g, function(word) {
+        return wordMap[word.toLowerCase()] > 1 ? `<span class="highlight">${word}</span>` : word;
+      });
+
+      document.getElementById("charCount").innerText = "Character count: " + charCount;
+      document.getElementById("wordCount").innerText = "Word count: " + wordCount;
+      document.getElementById("outputText").innerHTML = highlightedText;
+    }
+  </script>
+</head>
+<body>
+  <h1>Text Analyzer</h1>
+  <textarea id="inputText" rows="10" cols="50" placeholder="Enter your text here"></textarea>
+  <br>
+  <button onclick="analyzeText()">Analyze</button>
+  <p id="charCount">Character count: </p>
+  <p id="wordCount">Word count: </p>
+  <div id="outputText"></div>
+</body>
+</html>
